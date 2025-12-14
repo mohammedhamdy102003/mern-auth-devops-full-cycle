@@ -31,6 +31,15 @@ pipeline {
                 sh "docker tag $IMAGE_FRONTEND $LATEST_FRONTEND"
             }
         }
+        stage("Tag Images Correctly") {
+    steps {
+        sh """
+            docker tag mern-backend:latest $IMAGE_BACKEND
+            docker tag mern-frontend:latest $IMAGE_FRONTEND
+        """
+    }
+}
+
 
         stage("Security Scan") {
             steps {
